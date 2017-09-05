@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>express</title>
+</head>
+<body>
+  <video id="myVideo"></video>
+<script>
+navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia
+var constraints = {
+  audio: false,
+  video: {
+    height: {
+      min: 360,
+      max: 720
+    },
+    width: {
+      min: 640,
+      max: 1280
+    }
+  }
+}
+var successCallback = function (stream) {
+  var video = document.querySelector('video')
+         // video.src = window.URL.createObjectURL(stream)
+         // video.play()
+         video.srcObject = stream;
+         video.onloadedmetadata = function(e) {
+           video.play();
+         };
+}
+var errorCallback = function (error) {
+  console.log('error', error)
+}
+  navigator.getUserMedia(constraints, successCallback, errorCallback);
+
+  
+</script>
+</body>
+</html>
