@@ -2,11 +2,14 @@
 <html>
 <head>
   <title>express</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
   <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <video id="myVideoTag" autoplay></video>
-    <video id="theirVideoTag" autoplay></video>
+    <div class="videoWrapper">
+      <video id="myVideoTag" autoplay></video>
+      <video id="theirVideoTag" autoplay></video>
+    </div>
     <div>
       <label>Your Name</label><input id="myName" type="text"/>
       <label>Message</label><input id="myMessage" type="text"/>
@@ -129,8 +132,17 @@
       
       sendMessage.addEventListener('click', function(ev){
         io.emit('send', {"author":myName.value, "message":myMessage.value, "room":ROOM});
+        myMessage.value = ""
         ev.preventDefault();
       }, false);
+
+      myMessage.addEventListener('keydown', function (ev) {
+        if (ev.keyCode === 13) {
+          io.emit('send', {"author":myName.value, "message":myMessage.value, "room":ROOM});
+          myMessage.value = ""
+          ev.preventDefault();
+        }
+      }, false)
       
       
       

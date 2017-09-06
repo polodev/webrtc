@@ -1,0 +1,20 @@
+.videoWrapper {
+  padding: 20px;
+  width: 854px;
+  height: 480px;
+  position: relative;
+}
+#myVideoTag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+#theirVideoTag {
+  position: absolute;
+  width: 200px;
+  height: 150px;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
